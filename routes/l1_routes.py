@@ -401,7 +401,13 @@ async def rerun_tier_b_extraction(
             422,
             {
                 "error": structured["error"],
-                "message": "Chưa thể tạo file. Hãy thử lại hoặc bổ sung thông tin.",
+                # Hoc vien phai doc duoc PHAI LAM GI. Truoc 04/09/2026 message cung
+                # chung chung nen hoc vien bam "Tao lai file" mai khong xong.
+                "message": (
+                    str(structured.get("guidance") or "").strip()
+                    or "Chưa thể tạo file. Hãy thử lại hoặc bổ sung thông tin."
+                ),
+                "guidance": structured.get("guidance", ""),
                 "missing": structured.get("missing", []),
             },
         )
