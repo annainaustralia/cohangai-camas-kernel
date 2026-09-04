@@ -13,6 +13,18 @@
     "learn_url": "Cua vao hoc duy nhat. KHONG hardcode link SDL co sig, KHONG dung access-hub.html, KHONG dung host bfos-bc1."
   },
   "learn_gateway": "https://app.breakout.live/vao-hoc",
+  "bof_class": {
+    "_note": "Lich phong truc lop 7 tuan. Anna chot 12h, thu Ba va thu Sau (04/09/2026). Moi noi hien thi lich (trang chao mung, email, tin nhan) phai lay tu day, khong viet tay.",
+    "days_vi": "trưa thứ Ba và trưa thứ Sáu",
+    "time_vi": "12h tới 13h giờ Việt Nam",
+    "time_short_vi": "12h tới 13h",
+    "sessions": 14,
+    "weeks": 7,
+    "start_date": "2026-09-08",
+    "end_date": "2026-10-23",
+    "room_url": "https://app.breakout.live/lop-7-tuan",
+    "zoom_meeting_id": "83381445029"
+  },
   "dead_hosts": [
     "bfos-bc1-production.up.railway.app"
   ],
@@ -35,10 +47,18 @@
       "name": "Foundation System",
       "program_id": "foundation",
       "level_cap": 1,
-      "parts": ["foundation"],
-      "tags": ["breakout-da-mua-foundation-system"],
-      "communities": ["breakout-founders"],
-      "academy_courses": ["Foundation System - Breakout"],
+      "parts": [
+        "foundation"
+      ],
+      "tags": [
+        "breakout-da-mua-foundation-system"
+      ],
+      "communities": [
+        "breakout-founders"
+      ],
+      "academy_courses": [
+        "Foundation System - Breakout"
+      ],
       "learn_url": "https://app.breakout.live/vao-hoc"
     },
     "customer": {
@@ -47,9 +67,15 @@
       "program_id": "customer",
       "level_cap": 2,
       "_level_cap_note": "Giu nguyen muc cu (2). Neu Anna xac nhan Customer System gom ca L3 Value Proposition thi doi thanh 3, hien chua co khach mua le nen chua doi.",
-      "parts": ["customer"],
-      "tags": ["breakout-da-mua-customer-system"],
-      "communities": ["breakout-founders"],
+      "parts": [
+        "customer"
+      ],
+      "tags": [
+        "breakout-da-mua-customer-system"
+      ],
+      "communities": [
+        "breakout-founders"
+      ],
       "academy_courses": [],
       "learn_url": "https://app.breakout.live/vao-hoc"
     },
@@ -58,9 +84,15 @@
       "name": "Growth System",
       "program_id": "growth",
       "level_cap": 5,
-      "parts": ["growth"],
-      "tags": ["breakout-da-mua-growth-system"],
-      "communities": ["breakout-founders"],
+      "parts": [
+        "growth"
+      ],
+      "tags": [
+        "breakout-da-mua-growth-system"
+      ],
+      "communities": [
+        "breakout-founders"
+      ],
       "academy_courses": [],
       "learn_url": "https://app.breakout.live/vao-hoc"
     },
@@ -69,7 +101,11 @@
       "name": "Nen Tang Van Hanh Doanh Nghiep Mot Nguoi, 7 tuan",
       "program_id": "fob",
       "level_cap": 5,
-      "parts": ["foundation", "customer", "growth"],
+      "parts": [
+        "foundation",
+        "customer",
+        "growth"
+      ],
       "tags": [
         "breakout-da-mua-fob",
         "breakout-da-mua-bof",
@@ -77,8 +113,12 @@
         "breakout-da-mua-customer-system",
         "breakout-da-mua-growth-system"
       ],
-      "communities": ["breakout-founders"],
-      "academy_courses": ["Foundation System - Breakout"],
+      "communities": [
+        "breakout-founders"
+      ],
+      "academy_courses": [
+        "Foundation System - Breakout"
+      ],
       "learn_url": "https://app.breakout.live/vao-hoc"
     },
     "bof-uu-dai": {
@@ -86,7 +126,11 @@
       "name": "Nen Tang Van Hanh Doanh Nghiep Mot Nguoi, 7 tuan (uu dai)",
       "program_id": "bof-uu-dai",
       "level_cap": 5,
-      "parts": ["foundation", "customer", "growth"],
+      "parts": [
+        "foundation",
+        "customer",
+        "growth"
+      ],
       "tags": [
         "breakout-da-mua-fob",
         "breakout-da-mua-bof",
@@ -95,8 +139,12 @@
         "breakout-da-mua-growth-system",
         "breakout-bof-uu-dai-7tr"
       ],
-      "communities": ["breakout-founders"],
-      "academy_courses": ["Foundation System - Breakout"],
+      "communities": [
+        "breakout-founders"
+      ],
+      "academy_courses": [
+        "Foundation System - Breakout"
+      ],
       "learn_url": "https://app.breakout.live/vao-hoc"
     },
     "coaching": {
@@ -104,9 +152,18 @@
       "name": "Breakout Coaching 52 tuan",
       "program_id": "coaching",
       "level_cap": 6,
-      "parts": ["foundation", "customer", "growth", "coaching"],
-      "tags": ["breakout-da-mua-coaching"],
-      "communities": ["breakout-founders"],
+      "parts": [
+        "foundation",
+        "customer",
+        "growth",
+        "coaching"
+      ],
+      "tags": [
+        "breakout-da-mua-coaching"
+      ],
+      "communities": [
+        "breakout-founders"
+      ],
       "academy_courses": [],
       "learn_url": "https://app.breakout.live/vao-hoc"
     },
@@ -116,7 +173,9 @@
       "program_id": "",
       "level_cap": 0,
       "parts": [],
-      "tags": ["breakout-vip"],
+      "tags": [
+        "breakout-vip"
+      ],
       "communities": [],
       "academy_courses": [],
       "learn_url": ""
@@ -127,7 +186,9 @@
       "program_id": "",
       "level_cap": 0,
       "parts": [],
-      "tags": ["venture-breakout-k3-vip"],
+      "tags": [
+        "venture-breakout-k3-vip"
+      ],
       "communities": [],
       "academy_courses": [],
       "learn_url": ""
@@ -138,7 +199,9 @@
       "program_id": "",
       "level_cap": 0,
       "parts": [],
-      "tags": ["venture-breakout-k4-vip"],
+      "tags": [
+        "venture-breakout-k4-vip"
+      ],
       "communities": [],
       "academy_courses": [],
       "learn_url": ""
@@ -149,8 +212,12 @@
       "program_id": "",
       "level_cap": 0,
       "parts": [],
-      "tags": ["speakout-noi-la-hieu"],
-      "communities": ["speakout-english"],
+      "tags": [
+        "speakout-noi-la-hieu"
+      ],
+      "communities": [
+        "speakout-english"
+      ],
       "academy_courses": [],
       "learn_url": ""
     },
@@ -160,7 +227,9 @@
       "program_id": "",
       "level_cap": 0,
       "parts": [],
-      "tags": ["spk-chal-vip"],
+      "tags": [
+        "spk-chal-vip"
+      ],
       "communities": [],
       "academy_courses": [],
       "learn_url": ""
@@ -171,8 +240,13 @@
       "program_id": "",
       "level_cap": 0,
       "parts": [],
-      "tags": ["nlh-tu-hoc-6m", "speakout-noi-la-hieu"],
-      "communities": ["speakout-english"],
+      "tags": [
+        "nlh-tu-hoc-6m",
+        "speakout-noi-la-hieu"
+      ],
+      "communities": [
+        "speakout-english"
+      ],
       "academy_courses": [],
       "learn_url": ""
     },
@@ -182,8 +256,13 @@
       "program_id": "",
       "level_cap": 0,
       "parts": [],
-      "tags": ["nlh-tu-hoc-1y", "speakout-noi-la-hieu"],
-      "communities": ["speakout-english"],
+      "tags": [
+        "nlh-tu-hoc-1y",
+        "speakout-noi-la-hieu"
+      ],
+      "communities": [
+        "speakout-english"
+      ],
       "academy_courses": [],
       "learn_url": ""
     },
@@ -193,7 +272,9 @@
       "program_id": "",
       "level_cap": 0,
       "parts": [],
-      "tags": ["spk-app-quota-extra"],
+      "tags": [
+        "spk-app-quota-extra"
+      ],
       "communities": [],
       "academy_courses": [],
       "learn_url": ""

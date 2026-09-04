@@ -115,8 +115,52 @@ def alert_l1_intake_submitted(student_id: str, email: str = "", name: str = "") 
         f"━━━━━━━━━━━━━━━━━━━━━\n"
         f"<b>Action Anna:</b> Đợi AI extract xong, review canonical files với student:\n"
         f"https://os.breakout.live/sdl/students/{student_id}/output/L1?sig={signature}\n"
-        f"<b>✅ Duyệt & mở Level 2</b> (chỉ Anna, học viên không tự mở):\n"
-        f"{_approve_link(student_id, 'gate_1_founder')}"
+        f"<i>Chưa bấm duyệt lúc này. Khi đủ 8 file, Hằng nhận tin SẴN SÀNG DUYỆT kèm link.</i>"
+    )
+    send_telegram_sync(msg)
+
+
+def alert_gate_auto_opened(student_id: str, gate_key: str = "gate_1_founder",
+                           email: str = "", name: str = "") -> None:
+    """Bao Anna sau khi he thong TU MO tang tiep theo (Anna chot 04/09/2026).
+
+    Hoc vien khong phai cho Anna bam nut. Anna xem bai sau, chua dat thi yeu cau
+    lam lai. Tin nay la de biet, khong phai de bam.
+    """
+    signature = sign_student(student_id)
+    nxt = {"gate_1_founder": "Tầng 2 Customer Intelligence"}.get(gate_key, "tầng tiếp theo")
+    msg = (
+        f"🔓 <b>ĐÃ TỰ MỞ {nxt.upper()}</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━━\n"
+        f"{_student_meta_block(student_id, email, name)}\n"
+        f"<b>Lý do:</b> học viên đã đủ 8 hồ sơ Tầng 1, hệ thống mở ngay theo chính sách mới.\n"
+        f"━━━━━━━━━━━━━━━━━━━━━\n"
+        f"<b>Hằng xem bài của học viên khi rảnh:</b>\n"
+        f"https://os.breakout.live/sdl/students/{student_id}/output/L1?sig={signature}\n"
+        f"<i>Chưa đạt thì nhắn học viên làm lại, không cần bấm gì ở đây.</i>"
+    )
+    send_telegram_sync(msg)
+
+
+def alert_gate_ready(student_id: str, gate_key: str = "gate_1_founder",
+                     email: str = "", name: str = "") -> None:
+    """Bao Anna khi hoc vien DU DIEU KIEN duyet, kem link duyet.
+
+    Ly do (2026-09-04): truoc day link duyet gui ngay luc hoc vien nop form, khi AI
+    chua sinh xong file. Anna bam som thi endpoint tra 412 "Gate not ready", va
+    khong co gi nhac lai khi du dieu kien. Khach BOF dau tien ket o Tang 1 dung vi
+    the: file da du tu 14h23 ma gate van pending.
+    """
+    signature = sign_student(student_id)
+    msg = (
+        f"✅ <b>SẴN SÀNG DUYỆT</b> (đủ 8 file Tầng 1)\n"
+        f"━━━━━━━━━━━━━━━━━━━━━\n"
+        f"{_student_meta_block(student_id, email, name)}\n"
+        f"<b>Xem bài của học viên:</b>\n"
+        f"https://os.breakout.live/sdl/students/{student_id}/output/L1?sig={signature}\n"
+        f"━━━━━━━━━━━━━━━━━━━━━\n"
+        f"<b>Bấm để mở Tầng 2 cho học viên:</b>\n"
+        f"{_approve_link(student_id, gate_key)}"
     )
     send_telegram_sync(msg)
 

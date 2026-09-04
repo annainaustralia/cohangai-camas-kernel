@@ -39,6 +39,44 @@ BREAKOUT_APP_BASE = os.environ.get("BREAKOUT_APP_BASE", "https://app.breakout.li
 L1_COMPLETE_WEBHOOK_SECRET = os.environ.get("L1_COMPLETE_WEBHOOK_SECRET", "").strip()
 
 
+async def _auto_open_gate_1(
+    pool: asyncpg.Pool, student_id: UUID, email: str = "", name: str = "",
+) -> None:
+    """Mo Tang 2 ngay khi hoc vien du 8 file Tang 1. Bao Anna sau, khong chan hoc vien.
+
+    Idempotent: gate da khoa roi thi bo qua. Khong bao gio nem loi ra ngoai, viec
+    mo tang khong duoc lam hong luong luu bai cua hoc vien.
+    """
+    try:
+        async with pool.acquire() as conn:
+            already = await conn.fetchval(
+                "SELECT 1 FROM breakoutos.canonical_locks "
+                "WHERE student_id=$1 AND gate_key='gate_1_founder' LIMIT 1",
+                student_id,
+            )
+        if already:
+            log.info("Gate 1 da mo tu truoc cho %s, bo qua", student_id)
+            return
+        from routes.sdl_routes import lock_gate as sdl_lock_gate
+        await sdl_lock_gate(student_id, "gate_1_founder", pool)
+    except HTTPException as exc:
+        # 412 = chua du dieu kien that (vi du file bi tu choi sau khi review lai).
+        log.info("Auto mo Gate 1 chua duoc cho %s: %s", student_id, exc.detail)
+        return
+    except Exception as exc:  # pragma: no cover
+        log.warning("Auto mo Gate 1 loi (non-blocking): %r", exc)
+        return
+    try:
+        from routes.telegram_alert import alert_gate_auto_opened
+        alert_gate_auto_opened(str(student_id), "gate_1_founder", email=email, name=name)
+    except Exception as exc:  # pragma: no cover
+        log.warning("alert_gate_auto_opened failed: %r", exc)
+    try:
+        await _generate_ai_context(pool, student_id)
+    except Exception as exc:  # pragma: no cover
+        log.warning("AI context sau khi mo Gate 1 loi: %r", exc)
+
+
 async def _notify_l1_complete(pool: asyncpg.Pool, student_id: UUID) -> None:
     """Bao breakout-app gui email vault khi L1 hoan thanh (>=8 file reviewed).
 
@@ -57,6 +95,21 @@ async def _notify_l1_complete(pool: asyncpg.Pool, student_id: UUID) -> None:
             meta = await conn.fetchrow(
                 "SELECT email, full_name FROM breakoutos.students WHERE id=$1", student_id,
             )
+        # Du 8 file = du dieu kien Gate 1 => TU MO Tang 2 (Anna chot 04/09/2026).
+        #
+        # Truoc do gate chi mo khi Anna bam link trong Telegram, ma link ay gui ngay
+        # luc hoc vien nop form, khi AI chua sinh xong file. Bam som thi endpoint tra
+        # 412 "Gate not ready", va khong co gi nhac lai khi du dieu kien. Khach BOF
+        # dau tien ket o Tang 1 dung vi vay: file du tu 14h23 ma gate van pending.
+        #
+        # Chinh sach moi: hoc vien lam du bai thi he thong mo ngay, Anna xem sau va
+        # yeu cau lam lai neu chua dat. Hop voi lop 7 tuan tu hoc: khach khong phai
+        # cho Anna bam nut moi hoc tiep.
+        await _auto_open_gate_1(
+            pool, student_id,
+            email=(meta["email"] if meta else "") or "",
+            name=(meta["full_name"] if meta else "") or "",
+        )
         if not meta or not meta["email"]:
             return
         headers = {"User-Agent": "camas-l1-notify/1.0"}
