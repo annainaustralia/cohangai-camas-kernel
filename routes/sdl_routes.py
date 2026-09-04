@@ -68,7 +68,15 @@ def require_admin_key(request: Request) -> None:
 # ============================================================
 # Program-level access cap
 # ============================================================
-PROGRAM_LEVEL_CAP: dict[str, int] = {
+# Nguon canonical: config/entitlements.json (ban sao dong bo tu breakout/configs/
+# entitlements.json, co test doi chieu checksum). Dict duoi day la fallback khi
+# thieu file, giu nguyen hanh vi cu de khong chet service.
+#
+# Su co 2026-09-04: khach mua khoa tong 7 tuan (program_id "bof-uu-dai") khong co
+# trong bang nay nen roi vao DEFAULT_LEVEL_CAP=1. Ho tra tien ca ba phan nhung
+# BreakoutOS chi mo Level 1, L2 va L3 tra 403 "Goi bof-uu-dai chi duoc truy cap
+# den Level 1". Tu nay moi san pham moi phai khai trong entitlements.json.
+_FALLBACK_LEVEL_CAP: dict[str, int] = {
     "foundation": 1,
     "foundation-system": 1,
     "customer": 2,
@@ -77,8 +85,38 @@ PROGRAM_LEVEL_CAP: dict[str, int] = {
     "growth-system": 5,
     "coaching": 6,
     "breakout-founder": 6,
+    "fob": 5,
+    "bof": 5,
+    "bof-uu-dai": 5,
 }
 DEFAULT_LEVEL_CAP = 1
+_ENTITLEMENTS_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config", "entitlements.json"
+)
+
+
+def _load_program_level_cap() -> dict[str, int]:
+    """Doc level cap tu entitlements.json, gop voi fallback. Khong bao gio raise."""
+    caps = dict(_FALLBACK_LEVEL_CAP)
+    try:
+        with open(_ENTITLEMENTS_PATH, encoding="utf-8") as fh:
+            cfg = json.load(fh)
+        for key, prod in (cfg.get("products") or {}).items():
+            if prod.get("venture") != "breakout":
+                continue
+            cap = int(prod.get("level_cap") or 0)
+            if cap <= 0:
+                continue
+            for name in {key, prod.get("program_id") or ""}:
+                name = (name or "").strip().lower().replace("_", "-")
+                if name:
+                    caps[name] = cap
+    except Exception:  # thieu file / JSON hong: giu fallback
+        log.warning("Khong doc duoc entitlements.json, dung fallback level cap")
+    return caps
+
+
+PROGRAM_LEVEL_CAP: dict[str, int] = _load_program_level_cap()
 
 
 def normalize_program_id(program_id: str | None) -> str:
