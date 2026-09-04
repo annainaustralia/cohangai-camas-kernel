@@ -147,9 +147,11 @@ async def l1_form(
   <div class="card"><h3>5. Điều Tôi Không Muốn (Anti Vision)</h3><p class="hint">5-10 điều bạn KHÔNG muốn trở thành. Mỗi dòng một điều.</p>
     <textarea name="anti_vision_text" required placeholder="VD:&#10;phụ thuộc 1 khách lớn&#10;làm việc tối thứ Bảy và Chủ Nhật&#10;chạy theo trend không hợp giá trị..."></textarea></div>
 
-  <div class="card"><h3>Bổ sung context để AI sinh chất lượng hơn (optional)</h3>
-    <label>Lived experience tóm tắt (background bạn)</label>
-    <textarea name="lived_experience" placeholder="Quá trình bạn đi đến đây..."></textarea>
+  <div class="card"><h3>6. Trải nghiệm và bằng chứng của bạn</h3>
+    <p class="hint">Phần này AI dùng để viết Câu chuyện sáng lập và Tài sản sáng lập. Bỏ trống thì hai hồ sơ đó không tạo được, nên bạn viết vài dòng.<br>
+    Nhớ kèm <b>ít nhất hai con số hoặc bằng cấp cụ thể</b>: số năm làm nghề, số khách đã phục vụ, quy mô doanh thu, chứng chỉ, bằng cấp.</p>
+    <label>Quá trình bạn đi tới đây</label>
+    <textarea name="lived_experience" placeholder="VD: 8 năm dạy tiếng Anh, đã kèm hơn 300 học viên, có chứng chỉ IELTS 8.0. Trước đó làm kỹ sư 5 năm, tự chuyển nghề năm 2019 sau khi..."></textarea>
     <label style="margin-top:14px">Customer direction (giả thuyết ban đầu)</label>
     <input type="text" name="customer_direction" placeholder="Nhóm người bạn đang nghĩ tới, chưa cần chốt. Tầng 2 sẽ kiểm chứng.">
   </div>

@@ -147,11 +147,24 @@ def render_markdown(file_key: str, structured: dict[str, Any], student_id: UUID)
     Template inline để tránh phụ thuộc Jinja2 file system trong Railway.
     """
     if structured.get("error"):
-        return (
-            f"# {file_key.replace('-', ' ').title()}\n\n"
-            f"> ⚠️ Lỗi sinh nội dung: {structured.get('error')}.\n"
-            f"> Vui lòng thử lại hoặc liên hệ Hằng qua Zalo.\n"
-        )
+        # Hoc vien can biet PHAI LAM GI, khong phai ma loi ky thuat. Precheck da
+        # tra san "guidance" va "missing" nhung truoc 04/09/2026 hai truong nay bi
+        # nuot, man hinh chi hien "insufficient_evidence" nen hoc vien bam "Tao lai
+        # file" mai khong xong (khach BOF dau tien mac dung cho nay).
+        guidance = str(structured.get("guidance") or "").strip()
+        missing = structured.get("missing") or []
+        lines = [f"# {file_key.replace('-', ' ').title()}", ""]
+        if guidance:
+            lines += ["> **Chưa tạo được file này, vì hồ sơ còn thiếu dữ liệu của bạn.**", ">",
+                      f"> {guidance}", ""]
+            if isinstance(missing, list) and missing:
+                lines += ["> Cụ thể còn thiếu:"] + [f"> - {m}" for m in missing] + [""]
+            lines += ["> Bạn quay lại phần **Lived experience** ở bước Tầng 1, bổ sung rồi bấm Tạo lại file.",
+                      "> Vướng chỗ nào, nhắn Hằng qua Zalo."]
+        else:
+            lines += [f"> ⚠️ Lỗi sinh nội dung: {structured.get('error')}.",
+                      "> Vui lòng thử lại hoặc liên hệ Hằng qua Zalo."]
+        return "\n".join(lines) + "\n"
 
     fm = (
         "---\n"
