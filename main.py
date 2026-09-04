@@ -114,6 +114,7 @@ from routes.l3_routes import router as l3_router
 from routes.l4_routes import router as l4_router
 from routes.l5_routes import router as l5_router
 from routes.l6a_routes import router as l6a_router
+from routes.academy_routes import router as academy_router
 from routes.dashboard_routes import router as dashboard_router
 from routes.intake_forms import router as intake_forms_router
 from routes.validation_routes import router as validation_router, log_system_error
@@ -564,6 +565,7 @@ app.include_router(l3_router, tags=["sdl-l3"])
 app.include_router(l4_router, tags=["sdl-l4"])
 app.include_router(l5_router, tags=["sdl-l5"])
 app.include_router(l6a_router, tags=["sdl-l6a"])
+app.include_router(academy_router, tags=["academy"])
 app.include_router(dashboard_router, tags=["dashboard"])
 app.include_router(intake_forms_router, tags=["intake-forms"])
 app.include_router(validation_router, tags=["validation"])

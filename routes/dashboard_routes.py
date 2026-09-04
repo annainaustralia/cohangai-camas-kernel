@@ -343,6 +343,8 @@ async def student_dashboard(
     ) or '<li class="empty">Chưa có gate nào lock</li>'
 
     quick_actions = [
+        # Bai giang song ngay trong BreakoutOS tu 04/09/2026, khong con o academy GHL.
+        f'<a href="/hoc?student={student_id}&sig={signature}" class="action-link">📚 Bài giảng của bạn</a>',
         f'<a href="/foundation/l1?student={student_id}&sig={signature}" class="action-link">L1 Founder OS</a>',
         f'<a href="/sdl/students/{student_id}/vault/export.zip?sig={signature}" class="action-link">Tải vault .zip</a>',
         f'<a href="/sdl/students/{student_id}/output/L1?sig={signature}" class="action-link">Output L1 Day 1</a>',
