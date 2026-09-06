@@ -320,9 +320,22 @@ async def lesson_page(course_key: str, lesson_key: str, student: str = "", sig: 
         )
     video = ""
     if lesson["video_url"]:
-        video = (f'<iframe class="video" src="{html.escape(lesson["video_url"])}" '
-                 f'allow="accelerometer;gyroscope;encrypted-media;picture-in-picture;fullscreen" '
-                 f'allowfullscreen></iframe>')
+        url = html.escape(lesson["video_url"])
+        if lesson["video_url"].endswith(".m3u8"):
+            # Kho video da chuyen sang S3 + CloudFront (Anna chot 06/09/2026).
+            # Safari phat HLS san, cac trinh duyet khac can hls.js.
+            video = (
+                f'<video class="video" id="v" controls playsinline preload="metadata"></video>'
+                f'<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js"></script>'
+                f'<script>(function(){{var v=document.getElementById("v"),u="{url}";'
+                f'if(v.canPlayType("application/vnd.apple.mpegurl")){{v.src=u;}}'
+                f'else if(window.Hls&&window.Hls.isSupported()){{var h=new window.Hls();'
+                f'h.loadSource(u);h.attachMedia(v);}}else{{v.src=u;}}}})();</script>'
+            )
+        else:
+            video = (f'<iframe class="video" src="{url}" '
+                     f'allow="accelerometer;gyroscope;encrypted-media;picture-in-picture;fullscreen" '
+                     f'allowfullscreen></iframe>')
     workbook = ""
     if lesson["workbook_url"]:
         workbook = (f'<p><a href="{html.escape(lesson["workbook_url"])}" rel="noreferrer">'
