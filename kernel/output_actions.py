@@ -171,7 +171,7 @@ def generate_email_sequence_html(
     """Build 5-email sequence template from mvo_cohort wizard output.
 
     Emails: Welcome, Abandon Cart, Post-purchase, Cross-sell, Win-back.
-    Ready paste vào Brevo/Mailchimp/GHL workflow.
+    Ready paste vào công cụ email marketing/GHL workflow.
     """
     offer_name = (
         mvo_payload.get("offer_name")
@@ -315,7 +315,7 @@ Hằng""",
 
     return _wrap_artifact_page(
         title=f"5 Chuỗi Email cho {offer_name}",
-        intro="Template ready paste vào Brevo/GHL/Mailchimp. Customize {{first_name}} + link với CRM của bạn. KHÔNG copy-paste cứng, sửa giọng cho phù hợp khách hàng bạn.",
+        intro="Template ready paste vào GHL/công cụ email marketing. Customize {{first_name}} + link với CRM của bạn. KHÔNG copy-paste cứng, sửa giọng cho phù hợp khách hàng bạn.",
         landing_id=landing_id,
         content=f"""
         <div class="emails-grid">{emails_html}</div>

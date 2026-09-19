@@ -42,7 +42,7 @@ Pre-requisites:
     - Railway API token (RAILWAY_API_TOKEN env)
     - GitHub repo `cohangai-camas-kernel-template` exists (forked from camas-kernel)
     - CLOUDFLARE_API_TOKEN + CLOUDFLARE_ZONE_ID_BREAKOUT set
-    - BREVO_API_KEY for magic link email
+    - HANGOS_MAIL_USER + HANGOS_MAIL_APP_PASSWORD (Google Workspace) cho email magic link
 
 KHÔNG bao gồm trong skeleton này (Anna setup manual):
     - Actual Railway service deploy (cần fork repo + Railway template setup)
@@ -529,7 +529,7 @@ async def spawn_capstone_instance(
 
 
 # ─────────────────────────────────────────────────────────────
-# Helpers (Railway + Cloudflare + Brevo)
+# Helpers (Railway + Cloudflare + Google Workspace)
 # ─────────────────────────────────────────────────────────────
 
 async def _spawn_railway_service(student_id: str, configs: dict) -> dict:
@@ -589,13 +589,8 @@ async def _create_aios_cname(student_id: str, target: str) -> bool:
 
 
 async def _send_capstone_email(to_email: str, display_name: str, admin_url: str, domain: str) -> bool:
-    """Send Capstone graduation email với admin URL + welcome."""
-    if httpx is None:
-        return False
-
-    key = os.environ.get("BREVO_API_KEY")
-    if not key:
-        return False
+    """Send Capstone graduation email qua Google Workspace (bo Brevo 2026-09-19)."""
+    from routes._email import send_workspace_email
 
     subject = "BreakoutOS Capstone của bạn đã sẵn sàng"
     html = f"""
@@ -614,19 +609,10 @@ async def _send_capstone_email(to_email: str, display_name: str, admin_url: str,
     <p>Đào Thị Hằng</p>
     """
 
-    async with httpx.AsyncClient(timeout=30) as client:
-        resp = await client.post(
-            "https://api.brevo.com/v3/smtp/email",
-            json={
-                "sender": {"name": "Đào Thị Hằng", "email": "support@daothihang.com"},
-                "to": [{"email": to_email, "name": display_name}],
-                "subject": subject,
-                "htmlContent": html,
-                "replyTo": {"email": "support@daothihang.com"}
-            },
-            headers={"api-key": key, "content-type": "application/json"}
-        )
-        return resp.status_code in (200, 201, 202)
+    return await send_workspace_email(
+        to_email, display_name, subject, html,
+        idempotency_key=f"capstone:{to_email}:{domain}",
+    )
 
 
 # ─────────────────────────────────────────────────────────────

@@ -164,7 +164,7 @@ class BC8NightAudit(BaseBC):
                 email_sent = False
 
             # Telegram DISABLED 2026-06-11 (Anna chốt im lặng cho daily audit, chỉ giữ email)
-            # Anna receive nightly report via email Brevo, KHÔNG cần spam Telegram.
+            # Anna receive nightly report via email, KHÔNG cần spam Telegram.
             telegram_sent = False
             # Original code preserved nếu cần re-enable:
             # telegram_body = report[:3700] + "...(xem email)" if len(report) > 3800 else report
