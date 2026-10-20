@@ -1,7 +1,7 @@
 {
   "_description": "Nguon DUY NHAT anh xa san pham -> quyen hoc Breakout. Moi noi (app.breakout.live, os.breakout.live/camas-kernel, tool backfill, smoke test) phai doc file nay, khong hardcode rieng. Tao 2026-09-04 sau su co onboarding khach BOF dau tien (Pham Anh Tuan): moi noi giu mot ban mapping rieng nen lech nhau, khach tra 17 trieu chi vao duoc 1 trong 3 phan.",
   "version": 1,
-  "updated": "2026-09-04",
+  "updated": "2026-10-20",
   "_schema": {
     "venture": "breakout | speakout. Guard chong lay cheo venture: san pham venture nay KHONG duoc cap community/course cua venture khac.",
     "program_id": "Gia tri ghi vao breakoutos.students.program_id khi tao student.",
@@ -20,6 +20,11 @@
     "time_short_vi": "12h tới 13h",
     "sessions": 14,
     "weeks": 7,
+    "product_keys": [
+      "fob",
+      "bof",
+      "bof-uu-dai"
+    ],
     "start_date": "2026-09-08",
     "end_date": "2026-10-23",
     "room_url": "https://app.breakout.live/lop-7-tuan",
@@ -59,7 +64,8 @@
       "academy_courses": [
         "Foundation System - Breakout"
       ],
-      "learn_url": "https://app.breakout.live/vao-hoc"
+      "learn_url": "https://app.breakout.live/vao-hoc",
+      "academy_offer": "Foundation System"
     },
     "customer": {
       "venture": "breakout",
@@ -76,8 +82,11 @@
       "communities": [
         "breakout-founders"
       ],
-      "academy_courses": [],
-      "learn_url": "https://app.breakout.live/vao-hoc"
+      "academy_courses": [
+        "Customer Insight System"
+      ],
+      "learn_url": "https://app.breakout.live/vao-hoc",
+      "academy_offer": ""
     },
     "growth": {
       "venture": "breakout",
@@ -93,8 +102,14 @@
       "communities": [
         "breakout-founders"
       ],
-      "academy_courses": [],
-      "learn_url": "https://app.breakout.live/vao-hoc"
+      "academy_courses": [
+        "Email Marketing E-commerce",
+        "AI for Shopify",
+        "Content Marketing Chuyen Doi Cao - Level 1"
+      ],
+      "learn_url": "https://app.breakout.live/vao-hoc",
+      "academy_offer": "Growth System",
+      "_academy_note": "Anna chot 04/09/2026: Growth System la goi gom ba khoa tren. Truoc do goi nay mang ten offer 'Shopify Business System' va chi gan nham mot khoa Foundation. Offer da doi ten thanh Growth System, gan du ba khoa, da xuat ban."
     },
     "fob": {
       "venture": "breakout",
@@ -117,7 +132,11 @@
         "breakout-founders"
       ],
       "academy_courses": [
-        "Foundation System - Breakout"
+        "Foundation System - Breakout",
+        "Customer Insight System",
+        "Email Marketing E-commerce",
+        "AI for Shopify",
+        "Content Marketing Chuyen Doi Cao - Level 1"
       ],
       "learn_url": "https://app.breakout.live/vao-hoc"
     },
@@ -143,7 +162,11 @@
         "breakout-founders"
       ],
       "academy_courses": [
-        "Foundation System - Breakout"
+        "Foundation System - Breakout",
+        "Customer Insight System",
+        "Email Marketing E-commerce",
+        "AI for Shopify",
+        "Content Marketing Chuyen Doi Cao - Level 1"
       ],
       "learn_url": "https://app.breakout.live/vao-hoc"
     },
@@ -156,7 +179,8 @@
         "foundation",
         "customer",
         "growth",
-        "coaching"
+        "coaching",
+        "automation"
       ],
       "tags": [
         "breakout-da-mua-coaching"
@@ -278,6 +302,96 @@
       "communities": [],
       "academy_courses": [],
       "learn_url": ""
+    },
+    "automation-dfy-tracking": {
+      "venture": "breakout",
+      "name": "Làm sẵn: Tracking Fix",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-tracking"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giá chờ chị chốt"
+    },
+    "automation-dfy-ghl": {
+      "venture": "breakout",
+      "name": "Làm sẵn: GoHighLevel Follow-up",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-ghl"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giá chờ chị chốt"
+    },
+    "automation-dfy-retention": {
+      "venture": "breakout",
+      "name": "Làm sẵn: Shopify Retention",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-retention"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giá chờ chị chốt"
+    },
+    "automation-dfy-ai": {
+      "venture": "breakout",
+      "name": "Làm sẵn: Store Run by AI",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-ai"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giá chờ chị chốt"
+    },
+    "automation-dfy-app": {
+      "venture": "breakout",
+      "name": "Làm sẵn: Store App trên hai store",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-app"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giá chờ chị chốt"
+    },
+    "automation-dfy-bo-ba": {
+      "venture": "breakout",
+      "name": "Làm sẵn: bộ ba Tracking, GoHighLevel, Shopify Retention",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-bo-ba"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giá chờ chị chốt"
     }
   }
 }
