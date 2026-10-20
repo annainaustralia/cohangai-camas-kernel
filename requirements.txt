@@ -18,3 +18,4 @@ urllib3<2
 
 # BreakoutOS CHỌN PDF export (Gap 3)
 weasyprint==62.3
+cryptography>=42.0

@@ -1,3 +1,4 @@
+# HangOS · TÁN (Gate) — trang hoc vien nhin thay. Xem wiki/projects/co-hang-ai/code/aios/hangos-so-do-he-thong.md
 """Academy trong BreakoutOS: hoc vien xem bai giang ngay tai day.
 
 Anna chot 04/09/2026: dua noi dung ba phan (Foundation, Customer, Growth) ve mot
@@ -18,11 +19,14 @@ import json
 import logging
 import os
 import re
+from urllib.parse import urlsplit, urlunsplit
 from uuid import UUID
 
 import asyncpg
 from fastapi import APIRouter, Depends
 from fastapi.responses import HTMLResponse, RedirectResponse
+
+from routes import _video_sign as _VS
 
 from routes.sdl_routes import get_pool, require_student_active
 from routes._auth import _verify_hmac
@@ -274,6 +278,38 @@ async def course_outline(course_key: str, student: str = "", sig: str = "", pool
     ))
 
 
+def _video_html(raw_url: str | None) -> str:
+    """Dung player rieng de kiem thu offline, khong can DB hay quyen hoc vien."""
+    if not raw_url:
+        return ""
+    parts = urlsplit(raw_url)
+    if not parts.path.endswith(".m3u8"):
+        return (f'<iframe class="video" src="{html.escape(raw_url)}" '
+                f'allow="accelerometer;gyroscope;encrypted-media;picture-in-picture;fullscreen" '
+                f'allowfullscreen></iframe>')
+    # Ky thu muc tu URL khong query/fragment, tranh dau / trong query doi Resource.
+    chu_ky = _VS.ky_thu_muc(urlunsplit(parts._replace(query="", fragment="")))
+    query = parts.query + ("&" if parts.query else "") + "v=2"
+    if chu_ky:
+        query += "&" + chu_ky
+    raw_url = urlunsplit(parts._replace(query=query))
+    # JSON cho JavaScript, HTML escaping chi danh cho thuoc tinh HTML.
+    url_js = json.dumps(raw_url).replace("</", "<\\/")
+    key_js = json.dumps(chu_ky).replace("</", "<\\/")
+    return (
+        '<video class="video" id="v" controls playsinline preload="metadata">'
+        'Mở bằng Chrome để xem video</video>'
+        '<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js"></script>'
+        f'<script>(function(){{var v=document.getElementById("v"),u={url_js},k={key_js};'
+        # hls.js phai gui chu ky tren moi request, policy thu muc khong tu cap quyen.
+        'if(window.Hls&&window.Hls.isSupported()){var h=new window.Hls('
+        'k?{xhrSetup:function(x,url){x.open("GET",url+(url.indexOf("?")<0?"?":"&")+k,true);}}:{});'
+        'h.loadSource(u);h.attachMedia(v);}else{'
+        # Native HLS khong truyen query xuong playlist/manh, nen hien thong bao.
+        'v.outerHTML="<p>Mở bằng Chrome để xem video</p>";}})();</script>'
+    )
+
+
 @router.get("/hoc/{course_key}/{lesson_key}", response_class=HTMLResponse)
 async def lesson_page(course_key: str, lesson_key: str, student: str = "", sig: str = "",
                       pool=Depends(get_pool)):
@@ -318,24 +354,7 @@ async def lesson_page(course_key: str, lesson_key: str, student: str = "", sig: 
                ON CONFLICT (student_id, lesson_id) DO UPDATE SET updated_at=now()""",
             row["id"], lesson["id"],
         )
-    video = ""
-    if lesson["video_url"]:
-        url = html.escape(lesson["video_url"])
-        if lesson["video_url"].endswith(".m3u8"):
-            # Kho video da chuyen sang S3 + CloudFront (Anna chot 06/09/2026).
-            # Safari phat HLS san, cac trinh duyet khac can hls.js.
-            video = (
-                f'<video class="video" id="v" controls playsinline preload="metadata"></video>'
-                f'<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js"></script>'
-                f'<script>(function(){{var v=document.getElementById("v"),u="{url}";'
-                f'if(v.canPlayType("application/vnd.apple.mpegurl")){{v.src=u;}}'
-                f'else if(window.Hls&&window.Hls.isSupported()){{var h=new window.Hls();'
-                f'h.loadSource(u);h.attachMedia(v);}}else{{v.src=u;}}}})();</script>'
-            )
-        else:
-            video = (f'<iframe class="video" src="{url}" '
-                     f'allow="accelerometer;gyroscope;encrypted-media;picture-in-picture;fullscreen" '
-                     f'allowfullscreen></iframe>')
+    video = _video_html(lesson["video_url"])
     workbook = ""
     if lesson["workbook_url"]:
         workbook = (f'<p><a href="{html.escape(lesson["workbook_url"])}" rel="noreferrer">'
