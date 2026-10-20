@@ -1,8 +1,8 @@
 """Smoke test FB Marketing API thật cho Pban01.
 
 Chạy:
-    cd cohangai/services/camas-kernel
-    PBAN_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/cohangai/.venv/bin/python tests/test_pban_01_fb_real.py
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
+    PBAN_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python tests/test_pban_01_fb_real.py
 
 Tests:
 1. FBMarketingClient instantiate với token từ env

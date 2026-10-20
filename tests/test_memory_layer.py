@@ -1,10 +1,10 @@
 """MemoryLayer smoke test, gọi pgvector thật + Voyage AI thật.
 
 Chạy:
-    cd cohangai/services/camas-kernel
-    /Users/mac/Documents/ANNA SECOND BRAIN/cohangai/.venv/bin/python tests/test_memory_layer.py
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
+    /Users/mac/Documents/ANNA SECOND BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python tests/test_memory_layer.py
 
-Yêu cầu VOYAGE_API_KEY + DATABASE_URL (hoặc CDP_DATABASE_URL) trong env hoặc cohangai/.env.
+Yêu cầu VOYAGE_API_KEY + DATABASE_URL (hoặc CDP_DATABASE_URL) trong env hoặc wiki/projects/co-hang-ai/code/.env.
 
 3 test:
   1. embed_and_store: store 1 record về câu chuyện mắm Quảng Trị, assert UUID + DB row + embedding 1024

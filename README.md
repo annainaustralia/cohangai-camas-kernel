@@ -43,7 +43,7 @@ Cohangai AIOS Multi-Agent System Kernel. Service Railway điều phối 25 agent
 └──────────────────────────────────────────────┘
 ```
 
-Chi tiết kiến trúc canonical: `cohangai/aios/cohangai-multi-agent-system-design.md` (CAMAS), `cohangai/aios/cerebrum-docs-deep-dive.md` (4 layer + Profile/Task/Assistant pattern), `cohangai/aios/aios-architecture-overview.md` (7 tầng + 5 flow).
+Chi tiết kiến trúc canonical: `wiki/projects/co-hang-ai/code/aios/cohangai-multi-agent-system-design.md` (CAMAS), `wiki/projects/co-hang-ai/code/aios/cerebrum-docs-deep-dive.md` (4 layer + Profile/Task/Assistant pattern), `wiki/projects/co-hang-ai/code/aios/aios-architecture-overview.md` (7 tầng + 5 flow).
 
 ---
 
@@ -195,7 +195,7 @@ KHÔNG hardcode secret. Mọi key đi qua `os.getenv()`. Tham khảo memory `ref
 ## 8. CHẠY LOCAL
 
 ```bash
-cd /Users/mac/Documents/ANNA SECOND BRAIN/cohangai/services/camas-kernel
+cd /Users/mac/Documents/ANNA SECOND BRAIN/wiki/projects/co-hang-ai/code/services/camas-kernel
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -300,14 +300,14 @@ Theo CAMAS spec (cohangai-multi-agent-system-design.md mục 3):
 
 Đọc TRƯỚC khi viết agent mới:
 
-1. `cohangai/aios/constitution.md` v1, 14 section A-N (voice, identity, escalation logic)
-2. `cohangai/aios/aios-master-spec-v1.md` (vision 500k AUD, 12 tháng roadmap)
-3. `cohangai/aios/cohangai-multi-agent-system-design.md` (CAMAS architecture)
-4. `cohangai/aios/cerebrum-docs-deep-dive.md` (4 layer dataclass + shared memory pattern)
-5. `cohangai/aios/aios-architecture-overview.md` (7 tầng + 5 flow)
-6. `cohangai/aios/agent-inventory-complete.md` (chi tiết 21+ agent định nghĩa)
-7. `cohangai/aios/tool-universe-complete.md` (80 API + 5 MCP)
-8. `cohangai/aios/memory-map-complete.md` (T0/T1/T2 tier + shared memory schema)
+1. `wiki/projects/co-hang-ai/code/aios/constitution.md` v1, 14 section A-N (voice, identity, escalation logic)
+2. `wiki/projects/co-hang-ai/code/aios/aios-master-spec-v1.md` (vision 500k AUD, 12 tháng roadmap)
+3. `wiki/projects/co-hang-ai/code/aios/cohangai-multi-agent-system-design.md` (CAMAS architecture)
+4. `wiki/projects/co-hang-ai/code/aios/cerebrum-docs-deep-dive.md` (4 layer dataclass + shared memory pattern)
+5. `wiki/projects/co-hang-ai/code/aios/aios-architecture-overview.md` (7 tầng + 5 flow)
+6. `wiki/projects/co-hang-ai/code/aios/agent-inventory-complete.md` (chi tiết 21+ agent định nghĩa)
+7. `wiki/projects/co-hang-ai/code/aios/tool-universe-complete.md` (80 API + 5 MCP)
+8. `wiki/projects/co-hang-ai/code/aios/memory-map-complete.md` (T0/T1/T2 tier + shared memory schema)
 
 Khi rule trong README này conflict với `constitution.md`, constitution thắng (file canonical, updated thường xuyên hơn).
 

@@ -93,7 +93,7 @@ async def growth_system_landing() -> HTMLResponse:
     """Khoa Growth System, tang 3 thang san pham Breakout, 15tr.
 
     Chuyen ve os.breakout.live 2026-08-12 theo cau truc URL Anna chot. Ban goc
-    truoc do o breakout/webapp/frontend/growth-system.html (nay 301 sang day).
+    truoc do o wiki/projects/breakout/code/webapp/frontend/growth-system.html (nay 301 sang day).
     """
     return HTMLResponse(_GS_FILE.read_text(encoding="utf-8"))
 

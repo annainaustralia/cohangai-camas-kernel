@@ -35,4 +35,4 @@ CREATE INDEX IF NOT EXISTS idx_case_onboarding_sla
   WHERE state NOT IN ('verified_active','closed');
 
 COMMENT ON TABLE breakoutos.case_onboarding IS
-  'BreakoutOS V5.1 Buyer Onboarding Case. Reconciler: breakout/tools/onboarding_case.py';
+  'BreakoutOS V5.1 Buyer Onboarding Case. Reconciler: wiki/projects/breakout/code/tools/onboarding_case.py';

@@ -137,7 +137,7 @@ async def run_profile(pool: asyncpg.Pool, index: int) -> None:
 
 
 async def main() -> int:
-    load_dotenv(ROOT.parents[2] / "cohangai/.env", override=False)
+    load_dotenv(ROOT.parents[2] / "wiki/projects/co-hang-ai/code/.env", override=False)
     dsn = os.getenv("CDP_DATABASE_URL") or os.getenv("DATABASE_URL")
     if not dsn:
         print("DATABASE_URL or CDP_DATABASE_URL is required")

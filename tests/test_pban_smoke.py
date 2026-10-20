@@ -1,8 +1,8 @@
 """Smoke test cho 10 Phòng ban agents.
 
 Chạy:
-    cd cohangai/services/camas-kernel
-    PBAN_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/cohangai/.venv/bin/python tests/test_pban_smoke.py
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
+    PBAN_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python tests/test_pban_smoke.py
 
 DRY_RUN bắt buộc:
 - Skip Telegram send (mọi agent)

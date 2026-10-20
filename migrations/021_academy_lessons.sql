@@ -7,7 +7,7 @@
 -- nhat de dua tat ca ve mot cho.
 --
 -- Nguon noi dung: giao trinh goc trong vault (wiki/projects/breakout). Script nap:
--- breakout/tools/academy_seed.py, chay lai duoc nhieu lan (idempotent theo key).
+-- wiki/projects/breakout/code/tools/academy_seed.py, chay lai duoc nhieu lan (idempotent theo key).
 
 BEGIN;
 

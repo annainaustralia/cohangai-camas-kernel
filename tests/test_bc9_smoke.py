@@ -1,10 +1,10 @@
 """BC9 Compliance Officer smoke test, gọi LLM thật + run deterministic regex.
 
 Chạy:
-    cd cohangai/services/camas-kernel
-    /Users/mac/Documents/ANNA SECOND BRAIN/cohangai/.venv/bin/python tests/test_bc9_smoke.py
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
+    /Users/mac/Documents/ANNA SECOND BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python tests/test_bc9_smoke.py
 
-Yêu cầu ANTHROPIC_API_KEY trong env hoặc trong cohangai/.env.
+Yêu cầu ANTHROPIC_API_KEY trong env hoặc trong wiki/projects/co-hang-ai/code/.env.
 
 3 test case:
 1. Clean content                → APPROVE
@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
-# Load env từ cohangai/.env nếu có
+# Load env từ wiki/projects/co-hang-ai/code/.env nếu có
 try:
     from dotenv import load_dotenv
 

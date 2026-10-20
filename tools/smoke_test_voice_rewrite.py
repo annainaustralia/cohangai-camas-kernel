@@ -1,7 +1,7 @@
 """Smoke test apply_voice_rewrite() Sprint 14 P0.3.
 
 Run:
-    cd cohangai/services/camas-kernel
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
     python3 tools/smoke_test_voice_rewrite.py
 """
 from __future__ import annotations

@@ -4,7 +4,7 @@ Pass 1 founder + 1 persona + 1 customer pain text through the 4-agent chain.
 Verify each agent succeeds + output feeds correctly to next stage.
 
 Usage:
-    cd cohangai/services/camas-kernel
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
     python3 tools/test_e2e_phase_a_chain.py
 """
 from __future__ import annotations

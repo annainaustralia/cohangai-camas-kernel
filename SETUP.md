@@ -16,8 +16,8 @@ brew install python@3.11
 # 2. Install HDF5 dependency
 brew install hdf5
 
-# 3. Tạo venv tại cohangai/
-cd "/Users/mac/Documents/ANNA SECOND BRAIN/cohangai"
+# 3. Tạo venv tại wiki/projects/co-hang-ai/code/
+cd "/Users/mac/Documents/ANNA SECOND BRAIN/wiki/projects/co-hang-ai/code"
 /opt/homebrew/bin/python3.11 -m venv .venv
 
 # 4. Upgrade pip
@@ -62,7 +62,7 @@ Cerebrum module exports (sau khi install):
 - `tool` — tool registry + MCP client
 
 ### Liên kết
-- Spec gốc: `cohangai/aios/cerebrum-docs-deep-dive.md`
-- Pattern adopt: `cohangai/aios/cerebrum-research-comparison.md`
-- Architecture: `cohangai/aios/cohangai-multi-agent-system-design.md`
+- Spec gốc: `wiki/projects/co-hang-ai/code/aios/cerebrum-docs-deep-dive.md`
+- Pattern adopt: `wiki/projects/co-hang-ai/code/aios/cerebrum-research-comparison.md`
+- Architecture: `wiki/projects/co-hang-ai/code/aios/cohangai-multi-agent-system-design.md`
 - Source repo: `raw/git/Cerebrum-main/`

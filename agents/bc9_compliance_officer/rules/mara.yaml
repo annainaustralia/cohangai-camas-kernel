@@ -2,7 +2,7 @@
 # Layer 1 of BC9 Compliance Officer
 #
 # Áp dụng đến 1/2027 (Anna ôn Capstone 10/2026, license dự kiến 1/2027).
-# Nguồn gốc: migration/rules/banned_phrases_vi.txt + Constitution Section M.
+# Nguồn gốc: wiki/projects/migration/code/rules/banned_phrases_vi.txt + Constitution Section M.
 #
 # Schema:
 #   banned_phrases: HARD violations, auto-BLOCK

@@ -1,8 +1,8 @@
 """Cron Lead Scoring real GHL wiring smoke test.
 
 Chạy:
-    cd cohangai/services/camas-kernel
-    /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/cohangai/.venv/bin/python \\
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
+    /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python \\
         tests/test_cron_lead_scoring_real.py
 
 Tests:

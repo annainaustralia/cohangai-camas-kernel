@@ -1,8 +1,8 @@
 """BC10 Coaching Delivery smoke test.
 
 Chạy:
-    cd cohangai/services/camas-kernel
-    BC10_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/cohangai/.venv/bin/python \\
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
+    BC10_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python \\
         tests/test_bc10_smoke.py
 
 DRY_RUN bắt buộc cho local test:

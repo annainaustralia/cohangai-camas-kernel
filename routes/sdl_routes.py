@@ -68,7 +68,7 @@ def require_admin_key(request: Request) -> None:
 # ============================================================
 # Program-level access cap
 # ============================================================
-# Nguon canonical: config/entitlements.json (ban sao dong bo tu breakout/configs/
+# Nguon canonical: config/entitlements.json (ban sao dong bo tu wiki/projects/breakout/code/configs/
 # entitlements.json, co test doi chieu checksum). Dict duoi day la fallback khi
 # thieu file, giu nguyen hanh vi cu de khong chet service.
 #

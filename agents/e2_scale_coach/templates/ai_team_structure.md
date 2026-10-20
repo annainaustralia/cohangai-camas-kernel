@@ -165,4 +165,4 @@ So với hire team người tương đương:
 
 Activate agent qua CAMAS Kernel `/kernel/execute` endpoint hoặc admin dashboard `os.breakout.live`. Mỗi venture có config riêng theo BreakoutOS pattern "1 Kernel + 5 config per venture".
 
-Source: `cohangai/services/camas-kernel/agents/` (27 BC subfolder), `cohangai/services/breakoutos/` (template config).
+Source: `wiki/projects/co-hang-ai/code/services/camas-kernel/agents/` (27 BC subfolder), `wiki/projects/co-hang-ai/code/services/breakoutos/` (template config).

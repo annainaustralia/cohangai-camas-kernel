@@ -23,7 +23,7 @@ Cross venture:
 
 LLM: Claude Opus 4.7 cho recommendation (chạy 1 lần/ngày, depth > tốc độ).
 
-Email send qua SMTP (Gmail App Password trong cohangai/.env) hoặc Resend
+Email send qua SMTP (Gmail App Password trong wiki/projects/co-hang-ai/code/.env) hoặc Resend
 fallback. Nếu cả 2 thiếu, log skip + vẫn gửi Telegram.
 
 BC8_DRY_RUN=1: skip email + Telegram, chỉ print report.

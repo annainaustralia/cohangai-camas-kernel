@@ -93,7 +93,7 @@ Sprint 13 P0/P1
 
 ## References
 
-- Sprint reference: `cohangai/aios/aios-build-instructions-sprint-13.md` (Sprint 13 spec)
+- Sprint reference: `wiki/projects/co-hang-ai/code/aios/aios-build-instructions-sprint-13.md` (Sprint 13 spec)
 - Tier 2 spec: `wiki/concepts/breakoutos-tier-2-spec.md`
 - BreakoutOS pattern: `wiki/concepts/breakoutos.md`
 - Framework v2: `wiki/concepts/solo-business-growth-system-v2.md`

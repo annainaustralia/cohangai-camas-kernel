@@ -1,8 +1,8 @@
 """BC3 split smoke test (Profile + Task agents, Cerebrum NAACL 2025 pattern).
 
 Chạy:
-    cd cohangai/services/camas-kernel
-    /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/cohangai/.venv/bin/python tests/test_bc3_split.py
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
+    /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python tests/test_bc3_split.py
 
 Test 4 case:
 1. BC3-Profile profile.refresh_single với mock customer_id=1 → success + profile structured.

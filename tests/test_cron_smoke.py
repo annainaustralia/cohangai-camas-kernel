@@ -1,8 +1,8 @@
 """6 cron agents smoke test, parametrized.
 
 Chạy:
-    cd cohangai/services/camas-kernel
-    CRON_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/cohangai/.venv/bin/python tests/test_cron_smoke.py
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
+    CRON_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python tests/test_cron_smoke.py
 
 DRY_RUN bắt buộc:
 - Skip HTTP call thật (cdp-webhook + Telegram)

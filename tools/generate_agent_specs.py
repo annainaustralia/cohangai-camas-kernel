@@ -10,7 +10,7 @@ Reads agent.py + prompt_template.py if exists + generates SPEC.md with:
 - Production deployment checklist template
 
 Usage:
-    cd cohangai/services/camas-kernel
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
     python3 tools/generate_agent_specs.py --all
     python3 tools/generate_agent_specs.py --agent bc12_consciousness_tracker
 """
@@ -248,7 +248,7 @@ def generate_spec(agent_dir: Path) -> str:
         "",
         f"## References",
         "",
-        f"- Sprint reference: `cohangai/aios/aios-build-instructions-sprint-13.md` (Sprint 13 spec)",
+        f"- Sprint reference: `wiki/projects/co-hang-ai/code/aios/aios-build-instructions-sprint-13.md` (Sprint 13 spec)",
         f"- Tier 2 spec: `wiki/concepts/breakoutos-tier-2-spec.md`",
         f"- BreakoutOS pattern: `wiki/concepts/breakoutos.md`",
         f"- Framework v2: `wiki/concepts/solo-business-growth-system-v2.md`",

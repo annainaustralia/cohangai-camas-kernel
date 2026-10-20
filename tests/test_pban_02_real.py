@@ -1,9 +1,9 @@
 """Smoke test Vbee + Creatomate real APIs cho Pban02 Nội dung.
 
 Chạy:
-    cd cohangai/services/camas-kernel
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
     PBAN_DRY_RUN=1 PBAN02_DRY_RUN=1 \\
-      /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/cohangai/.venv/bin/python \\
+      /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python \\
       tests/test_pban_02_real.py
 
 Tests:

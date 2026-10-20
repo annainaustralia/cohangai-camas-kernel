@@ -13,13 +13,13 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE = ROOT.parents[2]
 MIGRATIONS = {
-    "fanhub": WORKSPACE / "cohangai/services/fan-hub/migrations/017_breakout_internal_api.sql",
+    "fanhub": WORKSPACE / "wiki/projects/co-hang-ai/code/services/fan-hub/migrations/017_breakout_internal_api.sql",
     "challenge": ROOT / "migrations/014_breakout_challenge.sql",
 }
 
 
 async def main(target: str) -> int:
-    load_dotenv(WORKSPACE / "cohangai/.env", override=False)
+    load_dotenv(WORKSPACE / "wiki/projects/co-hang-ai/code/.env", override=False)
     if target == "fanhub":
         dsn = os.getenv("FAN_HUB_DATABASE_URL") or os.getenv("DATABASE_URL")
     else:

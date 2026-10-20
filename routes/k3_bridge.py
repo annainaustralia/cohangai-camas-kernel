@@ -2,7 +2,7 @@
 
 Chạy TRONG CAMAS (canonical backend). Poll registrant của webinar Breakout Challenge
 dùng chung, lọc theo session date K3, rồi tạo session CAMAS in-process (idempotent).
-Tránh hẳn duplication ở breakout/webapp. Cron-job.org gọi /cron/k3-bridge mỗi 5-15 phút.
+Tránh hẳn duplication ở wiki/projects/breakout/code/webapp. Cron-job.org gọi /cron/k3-bridge mỗi 5-15 phút.
 """
 from __future__ import annotations
 

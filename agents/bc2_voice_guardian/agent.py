@@ -1,6 +1,6 @@
 """BC2 Voice Guardian agent.
 
-Migrate từ standalone `cohangai/agents/voice_guardian/main.py` vào CAMAS Kernel
+Migrate từ standalone `wiki/projects/co-hang-ai/code/agents/voice_guardian/main.py` vào CAMAS Kernel
 như 1 BaseBC subclass. Đánh giá content match voice Hằng (APPROVE/FLAG/REJECT).
 
 Architecture notes:

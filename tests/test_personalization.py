@@ -1,8 +1,8 @@
 """Sprint 5 System-Wide Personalization test suite.
 
 Chạy:
-    cd cohangai/services/camas-kernel
-    /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/cohangai/.venv/bin/python \\
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
+    /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python \\
         tests/test_personalization.py
 
 5 test (ưu tiên unit + mock, không phụ thuộc Postgres + Voyage):
@@ -157,7 +157,11 @@ async def test_scheduler_auto_inject_tiers() -> bool:
         category: Optional[str] = None,
         categories: Optional[list[str]] = None,
         max_age_days: Optional[int] = None,
+        relevance_threshold_override: Optional[float] = None,
     ) -> list[MemoryRecord]:
+        if category in {"profile", "task"}:
+            assert relevance_threshold_override == 2.0
+            assert customer_id == 99999
         if category == "profile":
             return [profile_rec]
         if category == "task":

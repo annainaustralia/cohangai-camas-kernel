@@ -41,7 +41,7 @@ def generate_canonical(student_id, file_key, structured_data):
     return {"markdown": md, "json": structured_data}
 ```
 
-Markdown templates trong `cohangai/services/camas-kernel/templates/canonical/{file_key}.md.j2`.
+Markdown templates trong `wiki/projects/co-hang-ai/code/services/camas-kernel/templates/canonical/{file_key}.md.j2`.
 
 ## A5. Obsidian sync
 

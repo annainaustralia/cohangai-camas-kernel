@@ -1,8 +1,8 @@
 """cron_amem_weekly smoke test.
 
 Chạy:
-    cd cohangai/services/camas-kernel
-    CRON_AMEM_WEEKLY_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/cohangai/.venv/bin/python tests/test_cron_amem_smoke.py
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
+    CRON_AMEM_WEEKLY_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python tests/test_cron_amem_smoke.py
 
 DRY_RUN bắt buộc:
 - Skip Telegram send
@@ -74,6 +74,12 @@ async def test_valid_event_dry_run(agent: CronAmemWeekly) -> None:
     print(f"stats keys={list(stats.keys())}")
     print(f"scanned={stats.get('scanned')} processed={stats.get('processed')}")
     print(f"keywords_total={stats.get('keywords_total')} links_total={stats.get('links_total')}")
+    # The pytest fixture deliberately exercises the no-DB fallback, not SQL/LLM.
+    if not agent.memory.dsn:
+        assert stats["error"] == "DATABASE_URL chưa set"
+        assert stats["scanned"] == 0
+        assert stats["processed"] == 0
+        assert stats["telegram_sent"] is False
     pain_themes = stats.get("pain_themes") or []
     print(f"pain_themes count={len(pain_themes)}")
     if pain_themes:

@@ -3,7 +3,7 @@
 -- cohorts (SSOT cohort), webhook_events (idempotency/audit SePay).
 -- Idempotent (IF NOT EXISTS): production đã có sẵn 3 bảng này (tạo ad-hoc), migration này
 -- đưa schema vào repo cho reproducibility. KHÔNG phá dữ liệu prod.
--- Khớp cột với breakout/webapp/backend/app.py (INSERT INTO breakoutos.payment_orders).
+-- Khớp cột với wiki/projects/breakout/code/webapp/backend/app.py (INSERT INTO breakoutos.payment_orders).
 
 CREATE SCHEMA IF NOT EXISTS breakoutos;
 

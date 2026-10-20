@@ -327,6 +327,6 @@ Memory rules đã extract:
 
 CLAUDE.md sources:
 - Vault root CLAUDE.md (mục 9 phong cách viết)
-- cohangai/CLAUDE.md
+- wiki/projects/co-hang-ai/code/CLAUDE.md
 - wiki/projects/breakout/CLAUDE.md
 - wiki/projects/bmcorner/CLAUDE.md

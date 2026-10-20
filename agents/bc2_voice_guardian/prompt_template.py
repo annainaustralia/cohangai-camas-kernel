@@ -1,6 +1,6 @@
 """Prompt builder for BC2 Voice Guardian agent.
 
-Port nguyên xi từ standalone `cohangai/agents/voice_guardian/prompt_template.py`.
+Port nguyên xi từ standalone `wiki/projects/co-hang-ai/code/agents/voice_guardian/prompt_template.py`.
 Tách prompt template ra để dễ iterate + version control.
 
 Tham chiếu:

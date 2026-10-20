@@ -4,7 +4,7 @@ Layer 2 (LLM semantic check) chạy SAU Layer 1 (deterministic regex).
 LLM được given context của 7 layer rule + content + violations đã catch ở layer 1,
 để paraphrased / semantic violations không lọt qua.
 
-Tham chiếu briefing: cohangai/agents/_briefing/bc9-compliance-officer-brief.md
+Tham chiếu briefing: wiki/projects/co-hang-ai/code/agents/_briefing/bc9-compliance-officer-brief.md
 """
 from __future__ import annotations
 

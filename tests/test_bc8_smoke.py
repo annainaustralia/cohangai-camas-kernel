@@ -1,8 +1,8 @@
 """BC8 Night Audit smoke test.
 
 Chạy:
-    cd cohangai/services/camas-kernel
-    BC8_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/cohangai/.venv/bin/python tests/test_bc8_smoke.py
+    cd wiki/projects/co-hang-ai/code/services/camas-kernel
+    BC8_DRY_RUN=1 /Users/mac/Documents/ANNA\\ SECOND\\ BRAIN/wiki/projects/co-hang-ai/code/.venv/bin/python tests/test_bc8_smoke.py
 
 DRY_RUN bắt buộc cho local test để tránh spam email + Telegram thật.
 """

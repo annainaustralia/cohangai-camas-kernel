@@ -27,7 +27,7 @@ FIELDS = {
 
 def main() -> int:
     workspace = Path(__file__).resolve().parents[4]
-    load_dotenv(workspace / "cohangai/.env", override=False)
+    load_dotenv(workspace / "wiki/projects/co-hang-ai/code/.env", override=False)
     api_key = os.getenv("GHL_API_KEY", "")
     location_id = os.getenv("GHL_LOCATION_ID", "")
     if not api_key or not location_id:
