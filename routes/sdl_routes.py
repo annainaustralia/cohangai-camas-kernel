@@ -25,7 +25,7 @@ from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, R
 from fastapi.responses import HTMLResponse, JSONResponse
 
 from routes._auth import sign_student, require_student_access, require_service_key
-from routes._email import send_brevo_email
+from routes._email import send_student_email
 from routes.sdl_schemas import (
     GATE_REQUIREMENTS,
     CanonicalFileCreate,
@@ -684,7 +684,7 @@ async def _maybe_send_l1_complete_email(pool: asyncpg.Pool, student_id: UUID) ->
         f"{_public_base_url()}/sdl/students/{student_id}/vault/export.zip?sig={sig}"
     )
     html = _l1_complete_email_html(student["full_name"], download_url)
-    ok = await send_brevo_email(
+    ok = await send_student_email(
         student["email"], student["full_name"],
         "Bộ Não Số Founder OS của bạn đã sẵn sàng để tải về", html,
     )

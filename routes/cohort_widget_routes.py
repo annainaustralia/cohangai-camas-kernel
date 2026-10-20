@@ -826,7 +826,7 @@ async def cohort_index() -> HTMLResponse:
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
           </div>
           <h4>Chuỗi email nuôi khách</h4>
-          <p>5 email tự động chào, giỏ hàng, sau mua, win-back. Brevo / MailerLite ready.</p>
+          <p>5 email tự động chào, giỏ hàng, sau mua, win-back. GHL / MailerLite ready.</p>
           <span class="os-product-source">TUẦN 7</span>
         </a>
 

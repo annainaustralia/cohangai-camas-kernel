@@ -1,16 +1,13 @@
-"""Gửi email cho học viên BreakoutOS. Đường chính GHL, đường lùi Brevo.
+"""Gửi email cho học viên BreakoutOS. Đường chính GHL, đường lùi Google Workspace.
 
-Vì sao đổi (2026-08-13): Brevo hết credit từ 19/07 (kiểm tra API thấy
-sendLimit còn 0). Mọi email cho học viên đang thất bại trong im lặng. Anna đã
-chuyển Về Úc sang GHL hồi tháng 7, camas-kernel là chỗ còn sót lại.
+Lịch sử: Brevo hết credit từ 19/07/2026 nên mọi email cho học viên thất bại trong
+im lặng; 13/08 chuyển sang GHL. 19/09/2026 bỏ hẳn Brevo, thêm Google Workspace
+(support@daothihang.com) làm đường lùi vì GHL chặn contact DND.
 
-Vì sao chưa dùng AWS SES: SES còn ở sandbox (ProductionAccessEnabled=False),
-chỉ gửi được tới địa chỉ đã xác minh. Gmail của học viên chưa xác minh nên
-SES sẽ từ chối. Khi nào xin được production access thì chuyển sang SES vì
-rẻ và ổn định hơn.
-
-Đổi đường bằng biến EMAIL_PROVIDER: ghl (mặc định) | brevo.
-
+Đổi đường bằng biến EMAIL_PROVIDER: ghl (mặc định: GHL rồi Workspace) |
+workspace (Workspace rồi GHL). Workspace cần HANGOS_MAIL_USER +
+HANGOS_MAIL_APP_PASSWORD (mật khẩu ứng dụng riêng của service camas-kernel).
+Chưa cấu hình thì Workspace tự bỏ qua, hành vi giữ nguyên như trước.
 
 Sender + replyTo theo quy ước Anna: "Đào Thị Hằng" <support@daothihang.com>.
 Best-effort: mọi lỗi gửi đều nuốt + log, KHÔNG raise (caller không được fail vì email).
@@ -19,6 +16,8 @@ from __future__ import annotations
 
 import logging
 import os
+
+from kernel.workspace_mailer import mask_email
 
 try:
     import httpx
@@ -29,43 +28,27 @@ log = logging.getLogger("camas.email")
 
 SENDER = {"name": "Đào Thị Hằng", "email": "support@daothihang.com"}
 REPLY_TO = {"email": "support@daothihang.com"}
-BREVO_URL = "https://api.brevo.com/v3/smtp/email"
 
 
-async def _send_brevo_raw(
+async def send_workspace_email(
     to_email: str, to_name: str | None, subject: str, html: str,
+    idempotency_key: str | None = None,
 ) -> bool:
-    """Gửi 1 email transactional qua Brevo. Trả True nếu Brevo nhận (2xx)."""
-    if httpx is None:
-        log.warning("httpx unavailable, skip email to %s", to_email)
+    """Gửi 1 email giao dịch qua Google Workspace (lớp gửi dùng chung)."""
+    import asyncio
+    from kernel.workspace_mailer import WorkspaceMailer
+
+    mailer = WorkspaceMailer.from_env(from_name=SENDER["name"], reply_to=REPLY_TO["email"])
+    if not mailer.configured():
+        log.info("Workspace mailer chua cau hinh, bo qua duong Workspace")
         return False
-    key = os.environ.get("BREVO_API_KEY", "")
-    if not key:
-        log.warning("BREVO_API_KEY not set, skip email to %s", to_email)
-        return False
-    if not to_email or "@" not in to_email:
-        log.warning("invalid to_email %r, skip", to_email)
-        return False
-    try:
-        async with httpx.AsyncClient(timeout=30) as client:
-            resp = await client.post(
-                BREVO_URL,
-                json={
-                    "sender": SENDER,
-                    "to": [{"email": to_email, "name": to_name or to_email}],
-                    "subject": subject,
-                    "htmlContent": html,
-                    "replyTo": REPLY_TO,
-                },
-                headers={"api-key": key, "content-type": "application/json"},
-            )
-        ok = resp.status_code in (200, 201, 202)
-        if not ok:
-            log.warning("Brevo send fail %s: %s", resp.status_code, resp.text[:200])
-        return ok
-    except Exception as exc:  # noqa: BLE001
-        log.warning("Brevo send exception to %s: %r", to_email, exc)
-        return False
+    res = await asyncio.to_thread(
+        mailer.send, to_email, subject, "Vui lòng mở email ở chế độ HTML.", html,
+        priority="transactional", idempotency_key=idempotency_key,
+    )
+    if not res.ok and res.status != "duplicate":
+        log.warning("Workspace send fail status=%s", res.status)
+    return res.ok
 
 
 GHL_SEARCH_URL = "https://services.leadconnectorhq.com/contacts/search"
@@ -132,16 +115,19 @@ async def send_email(
 ) -> bool:
     """Cua duy nhat de gui email cho hoc vien. Tu chon duong theo EMAIL_PROVIDER."""
     provider = os.environ.get("EMAIL_PROVIDER", "ghl").strip().lower()
-    if provider == "brevo":
-        return await _send_brevo_raw(to_email, to_name, subject, html)
+    if provider == "workspace":
+        if await send_workspace_email(to_email, to_name, subject, html):
+            return True
+        log.warning("Workspace that bai, thu lui ve GHL cho %s", mask_email(to_email))
+        return await send_ghl_email(to_email, to_name, subject, html)
     if await send_ghl_email(to_email, to_name, subject, html):
         return True
-    log.warning("GHL that bai, thu lui ve Brevo cho %s", to_email)
-    return await _send_brevo_raw(to_email, to_name, subject, html)
+    log.warning("GHL that bai, thu lui ve Workspace cho %s", mask_email(to_email))
+    return await send_workspace_email(to_email, to_name, subject, html)
 
 
-async def send_brevo_email(
+async def send_student_email(
     to_email: str, to_name: str | None, subject: str, html: str,
 ) -> bool:
-    """Ten cu, giu de cho goi khong phai sua. Thuc te di qua send_email()."""
+    """Ten goi cho email hoc vien (truoc day send_brevo_email). Thuc te di qua send_email()."""
     return await send_email(to_email, to_name, subject, html)
