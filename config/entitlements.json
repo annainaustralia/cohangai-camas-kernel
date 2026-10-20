@@ -392,6 +392,96 @@
       "academy_courses": [],
       "learn_url": "",
       "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giá chờ chị chốt"
+    },
+    "automation-dfy-tracking-coaching": {
+      "venture": "breakout",
+      "name": "Làm sẵn (học viên Coaching): Tracking Fix",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-tracking-coaching"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giảm 50% cho học viên đang học Coaching, chị chốt 20/10"
+    },
+    "automation-dfy-ghl-coaching": {
+      "venture": "breakout",
+      "name": "Làm sẵn (học viên Coaching): GoHighLevel Follow-up",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-ghl-coaching"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giảm 50% cho học viên đang học Coaching, chị chốt 20/10"
+    },
+    "automation-dfy-retention-coaching": {
+      "venture": "breakout",
+      "name": "Làm sẵn (học viên Coaching): Shopify Retention",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-retention-coaching"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giảm 50% cho học viên đang học Coaching, chị chốt 20/10"
+    },
+    "automation-dfy-ai-coaching": {
+      "venture": "breakout",
+      "name": "Làm sẵn (học viên Coaching): Store Run by AI",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-ai-coaching"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giảm 50% cho học viên đang học Coaching, chị chốt 20/10"
+    },
+    "automation-dfy-app-coaching": {
+      "venture": "breakout",
+      "name": "Làm sẵn (học viên Coaching): Store App trên hai store",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-app-coaching"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giảm 50% cho học viên đang học Coaching, chị chốt 20/10"
+    },
+    "automation-dfy-bo-ba-coaching": {
+      "venture": "breakout",
+      "name": "Làm sẵn (học viên Coaching): bộ ba Tracking, GoHighLevel, Shopify Retention",
+      "program_id": "",
+      "level_cap": 0,
+      "parts": [],
+      "tags": [
+        "breakout-da-mua-automation-dfy",
+        "breakout-automation-dfy-bo-ba-coaching"
+      ],
+      "communities": [],
+      "academy_courses": [],
+      "learn_url": "",
+      "_note": "Offer làm sẵn kín cho học viên Breakout, Phiên 163 20/10/2026, giảm 50% cho học viên đang học Coaching, chị chốt 20/10"
     }
   }
 }
