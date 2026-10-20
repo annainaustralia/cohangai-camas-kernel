@@ -245,6 +245,7 @@ async def course_outline(course_key: str, student: str = "", sig: str = "", pool
         rows = await conn.fetch(
             """SELECT m.key AS mkey, m.title AS mtitle, m.position AS mpos,
                       l.key AS lkey, l.title AS ltitle, l.duration, l.format, l.position AS lpos,
+                      (l.video_url <> '') AS co_video,
                       (p.status='completed') AS done
                FROM breakoutos.course_modules m
                JOIN breakoutos.course_lessons l ON l.module_id=m.id AND l.status='published'
@@ -261,7 +262,13 @@ async def course_outline(course_key: str, student: str = "", sig: str = "", pool
                 blocks.append("</div>")
             blocks.append(f'<div class="card"><h2>{html.escape(r["mtitle"])}</h2>')
             current = r["mkey"]
-        meta = " · ".join(x for x in (r["format"], r["duration"]) if x)
+        # Truong format trong giao trinh la KE HOACH (Anna dinh quay video), khong
+        # phai cai dang co. Ghi "Video" cho bai chua quay thi hoc vien bam vao gap
+        # trang trong. Chi goi la Video khi that su co video.
+        dang = r["format"] or ""
+        if "Video" in dang and not r["co_video"]:
+            dang = dang.replace("Checklist + Video", "Checklist").replace("Video", "Bài đọc")
+        meta = " · ".join(x for x in (dang, r["duration"]) if x)
         tick = '<span class="done">đã xong</span>' if r["done"] else html.escape(meta)
         blocks.append(
             f'<div class="lesson"><a href="/hoc/{course_key}/{r["lkey"]}{_q(student, sig)}">'
@@ -359,7 +366,10 @@ async def lesson_page(course_key: str, lesson_key: str, student: str = "", sig: 
     if lesson["workbook_url"]:
         workbook = (f'<p><a href="{html.escape(lesson["workbook_url"])}" rel="noreferrer">'
                     f'Tải workbook của bài này</a></p>')
-    meta = " · ".join(x for x in (lesson["mtitle"], lesson["format"], lesson["duration"]) if x)
+    dang = lesson["format"] or ""
+    if "Video" in dang and not lesson["video_url"]:
+        dang = dang.replace("Checklist + Video", "Checklist").replace("Video", "Bài đọc")
+    meta = " · ".join(x for x in (lesson["mtitle"], dang, lesson["duration"]) if x)
     done_block = ('<p class="done" style="margin-top:22px">Bạn đã học xong bài này.</p>' if done else
                   f'<form method="post" action="/sdl/lessons/{lesson["id"]}/xong{_q(student, sig)}">'
                   f'<button class="btn" type="submit">Đánh dấu đã học xong</button></form>')
